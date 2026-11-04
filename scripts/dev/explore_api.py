@@ -12,17 +12,14 @@ RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 # API Config
 BASE_URL = "https://api.nhle.com"
 ENDPOINT = "/stats/rest/en/skater/summary"
-SEASON = "20252026"     # Change to try other seasons
+SEASON = "20242025"     # Change to try other seasons
 PARAMS = {
-    "isAggregate": "false",
     "isGame": "false",  # Season stats instead of game
-    "start": 0,
     "limit": -1,   # All players
-    "factCayenneExp": "gamesPlayed>=1",
-    "cayenneExp": f"gameTypeId=2 and seasonId={SEASON}" # 2025-2026 regular season points
+    "cayenneExp": f"gameTypeId=2 and seasonId={SEASON}" # 2024-2025 regular season points
 }
 
-def fetch(endpoint: str):
+def fetch():
     url = BASE_URL + ENDPOINT
     print(f"Requesting: {url}")
 
@@ -35,8 +32,8 @@ def fetch(endpoint: str):
     return r.json()
 
 # Saves output to file in json format
-def save_output(data, endpoint):
-    safe_name = endpoint.strip("/").replace("/", "_")
+def save_output(data):
+    safe_name = ENDPOINT.strip("/").replace("/", "_")
     endpoint_dir = RAW_DATA_DIR / safe_name
     endpoint_dir.mkdir(exist_ok=True)
 
@@ -52,9 +49,9 @@ if __name__ == "__main__":
     print("Project root:", PROJECT_ROOT)
     print("Saving to:", RAW_DATA_DIR)
 
-    data = fetch(ENDPOINT)
+    data = fetch()
 
     print("\nTop-level keys:")
     print(list(data.keys()) if isinstance(data, dict) else type(data))
 
-    save_output(data, ENDPOINT)
+    save_output(data)
