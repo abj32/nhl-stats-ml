@@ -12,10 +12,9 @@ RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 ENDPOINT = "https://api.nhle.com/stats/rest/en/goalie/summary"
 SEASON = "20252026"     # Change to try other seasons
 PARAMS = {
-    "isAggregate": "false",
     "isGame": "false",  # Season stats instead of game
     "start": 0,
-    "limit": 50,   # Top 50 goalies
+    "limit": 10,   # Top 10 goalies
     "sort": json.dumps([
         {"property": "savePct", "direction": "DESC"},
         {"property": "wins", "direction": "DESC"},

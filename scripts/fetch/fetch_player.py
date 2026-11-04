@@ -25,12 +25,12 @@ def fetch(endpoint: str):
     return r.json()
 
 # Saves output to file in json format
-def save_output(data, playerId: str):
+def save_output(data):
     output_dir = (
         RAW_DATA_DIR
         / "v1"
         / "player"
-        / playerId
+        / PLAYER_ID
     )
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     print("\nTop-level keys:")
     print(list(data.keys()))
 
-    save_output(data, PLAYER_ID)
+    save_output(data)

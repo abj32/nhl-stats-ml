@@ -11,13 +11,10 @@ RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # API Config
 ENDPOINT = "https://api.nhle.com/stats/rest/en/goalie/summary"
-SEASON = "20252026"     # Change to try other seasons
+SEASON = "20262027"     # Change to try other seasons
 PARAMS = {
-    "isAggregate": "false",
     "isGame": "false",  # Season stats instead of game
-    "start": 0,
     "limit": -1,   # All goalies
-    "factCayenneExp": "gamesPlayed>=10",    # Have played at least 10 games
     "cayenneExp": f"gameTypeId=2 and seasonId={SEASON}" # 2025-2026 regular season points
 }
 
@@ -33,7 +30,7 @@ def fetch(endpoint: str):
     return r.json()
 
 # Saves output to file in json format
-def save_output(data, endpoint):
+def save_output(data):
     output_dir = (
         RAW_DATA_DIR
         / "stats"
@@ -60,4 +57,4 @@ if __name__ == "__main__":
     print("\nTop-level keys:")
     print(list(data.keys()) if isinstance(data, dict) else type(data))
 
-    save_output(data, ENDPOINT)
+    save_output(data)

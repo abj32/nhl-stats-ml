@@ -12,16 +12,12 @@ RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 ENDPOINT = "https://api.nhle.com/stats/rest/en/skater/summary"
 SEASON = "20252026"     # Change to try other seasons
 PARAMS = {
-    "isAggregate": "false",
     "isGame": "false",  # Season stats instead of game
-    "start": 0,
-    "limit": 100,   # Top 100 scorers
+    "limit": 25,   # Top 100 scorers
     "sort": json.dumps([
         {"property": "points", "direction": "DESC"},
         {"property": "goals", "direction": "DESC"},
-        {"property": "assists", "direction": "DESC"},
     ]),
-    "factCayenneExp": "gamesPlayed>=1",
     "cayenneExp": f"gameTypeId=2 and seasonId={SEASON}" # 2025-2026 regular season points
 }
 
