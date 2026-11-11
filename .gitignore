@@ -11,6 +11,11 @@ __pycache__/
 # VS Code
 .vscode/
 
+# Claude Code
+.claude/settings.local.json
+.claude/worktrees/
+CLAUDE.local.md
+
 # OS files
 .DS_Store
 Thumbs.db
