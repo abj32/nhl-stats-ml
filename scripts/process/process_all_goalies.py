@@ -111,7 +111,7 @@ def process_goalies(season: str) -> pd.DataFrame:
     ]
 
     cols = [c for c in preferred if c in df.columns]
-    return df[cols]
+    return df.loc[:, cols]
 
 
 def save_outputs(df: pd.DataFrame, season: str):
